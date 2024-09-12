@@ -5,9 +5,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "breed")
+@Data
+@NoArgsConstructor
 public class Breed {
     @Id
     private String id;
@@ -16,29 +20,5 @@ public class Breed {
     @ManyToOne
     @JoinColumn(name = "species_id", nullable = false)
     private Species species;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Species getSpecies() {
-        return species;
-    }
-
-    public void setSpecies(Species species) {
-        this.species = species;
-    }
 }
 
