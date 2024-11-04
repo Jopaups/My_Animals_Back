@@ -11,8 +11,12 @@ import java.util.Optional;
 @Service
 public class AnimalService {
 
+    private final AnimalRepository animalRepository;
+
     @Autowired
-    private AnimalRepository animalRepository;
+    public AnimalService(AnimalRepository animalRepository) {
+        this.animalRepository = animalRepository;
+    }
 
     public List<Animal> findAll() {
         return animalRepository.findAll();
@@ -23,12 +27,6 @@ public class AnimalService {
     }
 
     public Animal save(Animal animal) {
-        // Assurez-vous que la race appartient à l'espèce spécifiée
-        if (animal.getBreed() != null && animal.getSpecies() != null) {
-            if (!animal.getBreed().getSpecies().equals(animal.getSpecies())) {
-                throw new IllegalArgumentException("La race doit appartenir à l'espèce spécifiée.");
-            }
-        }
         return animalRepository.save(animal);
     }
 
